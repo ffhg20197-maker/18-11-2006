@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Интерактивная демонстрация автоматической проверки веб-проекта с GitHub Actions.">
+  <meta name="theme-color" content="#101827">
+  <title>Web CI Lab — контроль качества проекта</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#overview" aria-label="Web CI Lab — главная">
+        <span class="brand-mark">W</span><span>web<span class="brand-light">ci</span><small>QUALITY LAB</small></span>
+      </a>
+      <p class="nav-caption">РАБОЧЕЕ ПРОСТРАНСТВО</p>
+      <nav class="main-nav" aria-label="Основная навигация">
+        <a class="nav-link active" href="#overview"><span>◫</span> Обзор проекта</a>
+        <a class="nav-link" href="#pipeline"><span>⌁</span> CI-конвейер</a>
+        <a class="nav-link" href="#checks"><span>✓</span> Проверки качества</a>
+        <a class="nav-link" href="#matrix"><span>▦</span> Матрица сборки</a>
+        <a class="nav-link" href="#artifacts"><span>⇩</span> Артефакты</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-status"><span class="pulse"></span><div><b>Лаборатория активна</b><small>Демонстрационный режим</small></div></div>
+        <a class="repo-link" href="https://github.com/ffhg20197-maker/18-11-2006" target="_blank" rel="noreferrer">↗ Открыть репозиторий</a>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <div class="breadcrumb">Проекты <span>/</span> <b>Web CI Lab</b></div>
+        <div class="top-actions"><span class="branch-pill">⑂ main</span><span class="avatar">FC</span></div>
+      </header>
+
+      <section class="welcome">
+        <div><p class="eyebrow">ПАНЕЛЬ КОНТРОЛЯ • CI/CD</p><h1>Автоматическая проверка<br><span>веб-проекта</span></h1>
+          <p class="welcome-copy">Единая среда для контроля качества кода, тестирования и подготовки production-сборки.</p>
+          <div class="hero-actions"><a class="primary-button" href="#pipeline">Изучить конвейер <span>→</span></a><a class="text-button" href="https://github.com/ffhg20197-maker/18-11-2006" target="_blank" rel="noreferrer">Исходный код ↗</a></div>
+        </div>
+        <div class="hero-visual" aria-label="Схема автоматического конвейера"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="core"><span>CI</span><small>PIPELINE</small></div><div class="orbit-node node-a">⌘</div><div class="orbit-node node-b">✓</div><div class="orbit-node node-c">▤</div><div class="orbit-node node-d">↗</div></div>
+      </section>
+
+      <section class="metric-grid" aria-label="Ключевые показатели">
+        <article class="metric-card"><div class="metric-top"><span>ЭТАПЫ КОНВЕЙЕРА</span><span class="metric-icon violet">⌁</span></div><strong>04</strong><small>Checkout · Setup · Install · Verify</small></article>
+        <article class="metric-card"><div class="metric-top"><span>МАТРИЧНЫЕ ЗАПУСКИ</span><span class="metric-icon blue">▦</span></div><strong>06</strong><small>2 ОС × 3 версии Node.js</small></article>
+        <article class="metric-card"><div class="metric-top"><span>ПРОВЕРКИ КАЧЕСТВА</span><span class="metric-icon green">✓</span></div><strong>03</strong><small>Lint · Test · Build</small></article>
+        <article class="metric-card"><div class="metric-top"><span>СРОК АРХИВАЦИИ</span><span class="metric-icon amber">⇩</span></div><strong>05 <i>дней</i></strong><small>Quality Gate artifact</small></article>
+      </section>
+
+      <section class="content-section" id="pipeline">
+        <div class="section-heading"><div><p class="eyebrow">ПОСЛЕДОВАТЕЛЬНОСТЬ</p><h2>Как работает CI-конвейер</h2></div><span class="section-tag">4 обязательные фазы</span></div>
+        <div class="pipeline-card">
+          <div class="pipeline-step"><span class="step-number">01</span><div class="step-icon">⇩</div><h3>Checkout</h3><p>Получение исходного кода из репозитория.</p><code>actions/checkout@v4</code></div>
+          <div class="step-arrow">→</div>
+          <div class="pipeline-step"><span class="step-number">02</span><div class="step-icon">⌘</div><h3>Environment</h3><p>Настройка Node.js и кэширования npm.</p><code>setup-node@v4</code></div>
+          <div class="step-arrow">→</div>
+          <div class="pipeline-step"><span class="step-number">03</span><div class="step-icon">▤</div><h3>Dependencies</h3><p>Чистая и повторяемая установка пакетов.</p><code>npm ci</code></div>
+          <div class="step-arrow">→</div>
+          <div class="pipeline-step"><span class="step-number">04</span><div class="step-icon">✓</div><h3>Verification</h3><p>Линтинг, тестирование и сборка проекта.</p><code>lint · test · build</code></div>
+        </div>
+      </section>
+
+      <section class="content-section" id="checks">
+        <div class="section-heading"><div><p class="eyebrow">QUALITY GATE</p><h2>Три уровня контроля качества</h2></div><span class="section-tag">Автоматические проверки</span></div>
+        <div class="checks-grid">
+          <article class="check-card"><div class="check-head"><span class="check-symbol purple">01</span><span class="level-label">БАЗОВЫЙ • 30 БАЛЛОВ</span></div><h3>Быстрый контроль</h3><p>Проверка проекта после каждого push в main или ручного запуска workflow.</p><ul><li>Checkout и Node.js 20</li><li>npm ci</li><li>npm test</li></ul><span class="workflow-file">basic-ci.yml</span></article>
+          <article class="check-card"><div class="check-head"><span class="check-symbol blue">02</span><span class="level-label">СРЕДНИЙ • 35 БАЛЛОВ</span></div><h3>Quality Gate</h3><p>Последовательная проверка качества перед объединением изменений.</p><ul><li>Кэширование npm</li><li>Lint → Test → Build</li><li>Архив dist на 5 дней</li></ul><span class="workflow-file">quality-gate.yml</span></article>
+          <article class="check-card"><div class="check-head"><span class="check-symbol green">03</span><span class="level-label">ПРОДВИНУТЫЙ • 35 БАЛЛОВ</span></div><h3>Enterprise CI</h3><p>Параллельное тестирование на разных платформах и версиях Node.js.</p><ul><li>6 комбинаций matrix</li><li>Зависимая production-сборка</li><li>Артефакт и [skip ci]</li></ul><span class="workflow-file">enterprise-ci.yml</span></article>
+        </div>
+      </section>
+
+      <section class="content-section" id="matrix">
+        <div class="section-heading"><div><p class="eyebrow">CROSS-PLATFORM</p><h2>Матрица совместимости</h2></div><span class="section-tag">fail-fast: false</span></div>
+        <div class="matrix-card"><div class="matrix-intro"><div><h3>6 независимых конфигураций</h3><p>Каждая комбинация ОС и Node.js проверяется отдельно.</p></div><span class="matrix-count">2 × 3 = 6</span></div>
+          <div class="matrix-table-wrap"><table><thead><tr><th>Операционная система</th><th>Node.js 18</th><th>Node.js 20</th><th>Node.js 22</th></tr></thead><tbody><tr><td><span class="os-label">● Ubuntu Latest</span></td><td><span class="matrix-cell">18</span></td><td><span class="matrix-cell">20</span></td><td><span class="matrix-cell">22</span></td></tr><tr><td><span class="os-label">▣ Windows Latest</span></td><td><span class="matrix-cell">18</span></td><td><span class="matrix-cell">20</span></td><td><span class="matrix-cell">22</span></td></tr></tbody></table></div>
+          <p class="matrix-note"><span class="pulse"></span> Схема конфигураций workflow. Статусы реальных запусков проверяются во вкладке GitHub Actions.</p>
+        </div>
+      </section>
+
+      <section class="content-section" id="artifacts">
+        <div class="section-heading"><div><p class="eyebrow">BUILD OUTPUT</p><h2>Результат сборки</h2></div><span class="section-tag">Production</span></div>
+        <div class="artifact-card"><div class="artifact-icon">▧</div><div class="artifact-info"><h3>web-dist-build</h3><p>Готовый каталог dist/ · создаётся после успешных проверок</p><span class="artifact-meta">ZIP-архив • хранение 7 дней в Enterprise CI</span></div><a href="https://github.com/ffhg20197-maker/18-11-2006/actions" target="_blank" rel="noreferrer" class="artifact-button">Открыть Actions ↗</a></div>
+      </section>
+
+      <footer><span>WEB CI LAB <b>•</b> УЧЕБНЫЙ ПРОЕКТ</span><span>Тема 3.1.50 · GitHub Actions</span></footer>
+    </main>
+  </div>
+</body>
+</html>
