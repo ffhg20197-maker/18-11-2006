@@ -44,3 +44,13 @@ https://github.com/ffhg20197-maker/18-11-2006
 ## Демонстрация пропуска CI
 
 Выполнена отдельная проверка механизма пропуска: документационное изменение фиксируется коммитом с маркером `[skip ci]`. GitHub Actions не должен создавать обычные push-запуски для такого коммита. Проверка подтверждается отсутствием нового workflow run с SHA этого коммита во вкладке Actions.
+
+## Подтверждённые запуски
+
+- [Basic CI — success](https://github.com/ffhg20197-maker/18-11-2006/actions/runs/44234663797)
+- [Quality Gate — success](https://github.com/ffhg20197-maker/18-11-2006/actions/runs/44234774414)
+- [Quality Gate по pull request — success](https://github.com/ffhg20197-maker/18-11-2006/actions/runs/44234777676)
+- [Enterprise CI — 6 matrix jobs + production artifact — success](https://github.com/ffhg20197-maker/18-11-2006/actions/runs/44234767932)
+- [Проверка ошибки линтинга — ожидаемый failure](https://github.com/ffhg20197-maker/18-11-2006/actions/runs/44234732826)
+
+Production-артефакт: `enterprise-production-dist`, создаётся запуском Enterprise CI.
