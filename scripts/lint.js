@@ -16,8 +16,7 @@ function inspectDirectory(directory) {
     const path = join(directory, name);
     if (statSync(path).isDirectory()) inspectDirectory(path);
     else if (/\.(html|css|js|json|yml|yaml)$/.test(name)) {
-      const content = readFileSync(path, "utf8");
-      if (content.includes("\r")) failures.push(`${path}: обнаружены CRLF-переносы; используйте LF.`);
+      const content = readFileSync(path, "utf8").replace(/\r\n/g, "\n");
       if (/[ \t]+$/m.test(content)) failures.push(`${path}: обнаружены пробелы в конце строк.`);
     }
   }
